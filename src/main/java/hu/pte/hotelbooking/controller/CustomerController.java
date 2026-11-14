@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package hu.pte.hotelbooking.controller;
 
 import hu.pte.hotelbooking.model.Customer;
@@ -54,15 +53,4 @@ public class CustomerController {
     public List<Customer> searchCustomersByName(@PathVariable String keyword) {
         return service.searchCustomersByName(keyword);
     }
-=======
-
-package hu.pte.hotelbooking.controller;
-
-/**
- *
- * @author somalinban
- */
-public class CustomerController {
-    
->>>>>>> f2bbf344d39310d707f66e8318dfd142c7929726
 }
