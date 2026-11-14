@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package hu.pte.hotelbooking.service;
 
 import hu.pte.hotelbooking.exception.ResourceNotFoundException;
@@ -79,4 +80,18 @@ public class CustomerService {
         }
         return result;
     }
+=======
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package hu.pte.hotelbooking.service;
+
+/**
+ *
+ * @author somalinban
+ */
+public class CustomerService {
+    
+>>>>>>> f2bbf344d39310d707f66e8318dfd142c7929726
 }
