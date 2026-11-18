@@ -99,9 +99,7 @@ public class BookingService {
     }
     public List<Booking> findBookingsByCustomerId(Long customerId) {
 
-    throw new UnsupportedOperationException(
-
-            "Waiting for Yuka's repository method");
+    return repo.findBookingsByCustomerId(customerId);
 
 }
     private Customer findCustomer(Booking booking) {
