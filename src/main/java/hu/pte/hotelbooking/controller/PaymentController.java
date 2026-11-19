@@ -34,7 +34,7 @@ public class PaymentController {
     public Payment addPaymentJPA(@RequestBody Payment payment) {
         return service.addPaymentJPA(payment);
     }
-
+///
     @PutMapping("/jpa/edit/{id}")
     public Payment updatePaymentJPA(@PathVariable Long id, @RequestBody Payment payment) {
         return service.updatePaymentJPA(id, payment);
