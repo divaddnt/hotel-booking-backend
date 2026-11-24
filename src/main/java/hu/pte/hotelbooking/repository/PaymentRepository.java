@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
 
-    // Custom query: all payments with a given status (PENDING, PAID, REFUNDED)
+    //  all payments with a given status (PENDING, PAID, REFUNDED)
     @Query(value = "SELECT p FROM Payment p WHERE p.status = :status ORDER BY p.paymentDate DESC")
     List<Payment> findPaymentsByStatus(@Param("status") String status);
 }
