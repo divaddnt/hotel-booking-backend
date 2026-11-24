@@ -1,6 +1,13 @@
 package hu.pte.hotelbooking.repository;
 
 import hu.pte.hotelbooking.model.Room;
+<<<<<<< HEAD
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface RoomRepository extends JpaRepository<Room, Long> {
+    // Member 2 adds the custom query here
+}
+=======
 import java.math.BigDecimal;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,3 +24,4 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
             @Param("maxPrice") BigDecimal maxPrice
     );
 }
+>>>>>>> origin/main
