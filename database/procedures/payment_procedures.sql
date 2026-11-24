@@ -11,7 +11,7 @@ BEGIN
     SELECT total_price INTO totalPrice
     FROM booking
     WHERE id = bookingIdIN;
-    --how much was already paid (only PAID payments count)
+    -- how much was already paid (only PAID payments count)
     SELECT IFNULL(SUM(amount), 0) INTO paidAmount
     FROM payment
     WHERE booking_id = bookingIdIN AND status = 'PAID';
