@@ -2,11 +2,11 @@
 USE hotel_booking;
 
 INSERT INTO customer (id, full_name, email, phone, address, registration_date) VALUES
-(1, 'Bat-Erdene Ganbold', 'bat.erdene@example.com', '+976 9911 2233', 'Ulaanbaatar, Sukhbaatar district', '2026-09-01'),
-(2, 'Anna Kovacs',        'anna.kovacs@example.com', '+36 30 123 4567', 'Pecs, Rakoczi ut 10',             '2026-09-15'),
-(3, 'Tamas Nagy',         'tamas.nagy@example.com',  '+36 20 765 4321', 'Budapest, Andrassy ut 5',         '2026-10-02'),
-(4, 'Saruul Bold',        'saruul.bold@example.com', '+976 8800 1122',  'Darkhan',                         '2026-10-20'),
-(5, 'Maria Rossi',        'maria.rossi@example.com', '+39 333 444 5555','Milan, Via Roma 3',               '2026-11-01');
+(1, 'Nguyen Thanh Dat', 'dat97lqd@example.com', '+976 9911 2233', 'Dak Lak, Vietnam', '2026-09-01'),
+(2, 'Teryce Malema',        'teryce.malema@example.com', '+36 30 123 4567', 'Pecs, Rakoczi ut 10',             '2026-09-15'),
+(3, 'Ban Somalin',         'ban.somalin@example.com',  '+36 20 765 4321', 'Budapest, Andrassy ut 5',         '2026-10-02'),
+(4, 'Jamil Mahnoor',        'jamil.mahnoor@example.com', '+976 8800 1122',  'Dubai, UAE',                         '2026-10-20'),
+(5, 'Jinnai Yuka',        'jinnai.yuka@example.com', '+39 333 444 5555','Ulaanbaatar, Sukhbaatar district',               '2026-11-01');
 
 INSERT INTO room (id, room_number, room_type, price_per_night, capacity, floor, status) VALUES
 (1, '101', 'SINGLE',  45.00, 1, 1, 'AVAILABLE'),
