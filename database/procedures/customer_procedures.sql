@@ -1,4 +1,3 @@
--- customer_procedures.sql | owner: lead
 USE hotel_booking;
 DELIMITER //
 
