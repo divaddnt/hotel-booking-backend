@@ -15,17 +15,18 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
-    // 400: wrong input, e.g. check-out before check-in, negative amount
+    // 400: wrong input
+    // if the price <=0, checkout before checkin  or wrong payment status
     @ExceptionHandler(InvalidRequestException.class)
     public ResponseEntity<String> handleInvalid(InvalidRequestException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
-    // 409: duplicate e-mail / room number, or deleting a row that others still use
+    // 409: duplicate e-mail or room number, or deleting a row that others still in use
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<String> handleConflict(DataIntegrityViolationException ex) {
         return new ResponseEntity<>(
-                "Database rule broken: duplicate value, or this record is still used by another record.",
+                "Duplicate value, or this record is still used by another record.",
                 HttpStatus.CONFLICT);
     }
 }
