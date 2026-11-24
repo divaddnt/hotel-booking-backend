@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-    // Custom query: customers whose name contains the keyword (not case sensitive)
+    // customers whose name contains the keyword (not case sensitive)
     @Query(value = "SELECT c FROM Customer c WHERE LOWER(c.fullName) LIKE LOWER(CONCAT('%', :keyword, '%'))")
     List<Customer> searchCustomersByName(@Param("keyword") String keyword);
 }

@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface BookingRepository extends JpaRepository<Booking, Long> {
 
-    // Custom query ( Yuka): all bookings of one customer, earliest check-in first
+    // ( Yuka): all bookings of one customer, earliest check-in first
     @Query(value = "SELECT b FROM Booking b WHERE b.customer.id = :customerId ORDER BY b.checkInDate")
     List<Booking> findBookingsByCustomerId(@Param("customerId") Long customerId);
 }

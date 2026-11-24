@@ -42,7 +42,7 @@ public class CustomerService {
     }
 
     public Customer updateCustomerJPA(Long id, Customer customer) {
-        Customer existing = getCustomerByIdJPA(id);   // 404 if missing
+        Customer existing = getCustomerByIdJPA(id);   //  if missing ->404
         existing.setFullName(customer.getFullName());
         existing.setEmail(customer.getEmail());
         existing.setPhone(customer.getPhone());
@@ -58,7 +58,7 @@ public class CustomerService {
             throw new ResourceNotFoundException("Customer with id: " + id + " not found!");
         }
         repo.deleteById(id);
-        repo.flush();   // if the customer still has bookings, the 409 error appears here
+        repo.flush();  
     }
 
     // Stored procedure
