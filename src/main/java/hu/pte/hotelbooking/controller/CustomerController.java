@@ -12,7 +12,7 @@ public class CustomerController {
     @Autowired
     private CustomerService service;
 
-    // ===================== CRUD (JPA) =====================
+    // CRUD 
 
     @GetMapping(value = "/customer/jpa")
     public List<Customer> getAllCustomersJPA() {
@@ -40,14 +40,14 @@ public class CustomerController {
         return "Customer with id: " + id + " deleted";
     }
 
-    // ===================== Stored procedure =====================
+    //Stored procedure
 
     @GetMapping(value = "/customer/spq/count")
     public Integer countCustomersSPQ() {
         return service.countCustomersSPQ();
     }
 
-    // ===================== Custom query =====================
+    //Custom query 
 
     @GetMapping(value = "/customer/query/searchByName/{keyword}")
     public List<Customer> searchCustomersByName(@PathVariable String keyword) {

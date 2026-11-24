@@ -23,7 +23,7 @@ public class CustomerService {
     @PersistenceContext
     private EntityManager em;
 
-    // ===================== CRUD (JPA) =====================
+    // crud
 
     public List<Customer> getAllCustomersJPA() {
         return repo.findAll();
@@ -61,7 +61,7 @@ public class CustomerService {
         repo.flush();   // if the customer still has bookings, the 409 error appears here
     }
 
-    // ===================== Stored procedure =====================
+    // Stored procedure
 
     public Integer countCustomersSPQ() {
         StoredProcedureQuery spq = em.createStoredProcedureQuery("countCustomers");
@@ -70,7 +70,7 @@ public class CustomerService {
         return (Integer) spq.getOutputParameterValue("countOUT");
     }
 
-    // ===================== Custom query =====================
+    //  Custom query 
 
     public List<Customer> searchCustomersByName(String keyword) {
         List<Customer> result = repo.searchCustomersByName(keyword);

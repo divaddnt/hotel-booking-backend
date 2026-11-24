@@ -13,7 +13,7 @@ public class BookingController {
     @Autowired
     private BookingService service;
 
-    // CRUD (JPA) 
+    // CRUD 
 
     @GetMapping(value = "/booking/jpa")
     public List<Booking> getAllBookingsJPA() {

@@ -1,6 +1,5 @@
 package hu.pte.hotelbooking.service;
 
-<<<<<<< HEAD
 import hu.pte.hotelbooking.exception.InvalidRequestException;
 import hu.pte.hotelbooking.exception.ResourceNotFoundException;
 import hu.pte.hotelbooking.model.Booking;
@@ -33,31 +32,15 @@ public class PaymentService {
     @PersistenceContext
     private EntityManager em;
 
-    // ---------- CRUD (JPA) ----------
+    //  CRUD (JPA)
 
-=======
-import hu.pte.hotelbooking.exception.ResourceNotFoundException;
-import hu.pte.hotelbooking.model.Payment;
-import hu.pte.hotelbooking.repository.PaymentRepository;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-@Service
-public class PaymentService {
-
-    @Autowired
-    private PaymentRepository repo;
-
->>>>>>> origin/main
     public List<Payment> getAllPaymentsJPA() {
         return repo.findAll();
     }
 
     public Payment getPaymentByIdJPA(Long id) {
         return repo.findById(id)
-<<<<<<< HEAD
-                .orElseThrow(() -> new ResourceNotFoundException("Payment not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Payment with id: " + id + " not found!"));
     }
 
     public Payment addPaymentJPA(Payment payment) {
@@ -72,42 +55,34 @@ public class PaymentService {
         if (payment.getPaymentDate() == null) {
             payment.setPaymentDate(LocalDateTime.now());
         }
-=======
-                .orElseThrow(() -> new ResourceNotFoundException("Payment not found with id " + id));
-    }
-
-    public Payment addPaymentJPA(Payment payment) {
->>>>>>> origin/main
         return repo.save(payment);
     }
 
     public Payment updatePaymentJPA(Long id, Payment payment) {
-        Payment existing = getPaymentByIdJPA(id);
-<<<<<<< HEAD
+        Payment existing = getPaymentByIdJPA(id);   // 404 if missing
         checkAmount(payment.getAmount());
         existing.setBooking(findBooking(payment));
         existing.setAmount(payment.getAmount());
-        if (payment.getPaymentMethod() != null) existing.setPaymentMethod(payment.getPaymentMethod());
-        if (payment.getStatus() != null)        existing.setStatus(payment.getStatus());
-        if (payment.getPaymentDate() != null)   existing.setPaymentDate(payment.getPaymentDate());
-=======
-        existing.setBooking(payment.getBooking());
-        existing.setAmount(payment.getAmount());
-        existing.setPaymentMethod(payment.getPaymentMethod());
-        existing.setStatus(payment.getStatus());
-        existing.setPaymentDate(payment.getPaymentDate());
->>>>>>> origin/main
+        if (payment.getPaymentMethod() != null) {
+            existing.setPaymentMethod(payment.getPaymentMethod());
+        }
+        if (payment.getStatus() != null) {
+            existing.setStatus(payment.getStatus());
+        }
+        if (payment.getPaymentDate() != null) {
+            existing.setPaymentDate(payment.getPaymentDate());
+        }
         return repo.save(existing);
     }
 
     public void deletePaymentJPA(Long id) {
-<<<<<<< HEAD
-        Payment payment = getPaymentByIdJPA(id);
-        repo.delete(payment);
+        Payment existing = getPaymentByIdJPA(id);   // 404 if missing
+        repo.delete(existing);
     }
 
     // Stored procedure
 
+    // How much of the booking is still unpaid: total_price minus all PAID payments
     public BigDecimal getRemainingBalanceSPQ(Long bookingId) {
         if (!bookingRepo.existsById(bookingId)) {
             throw new ResourceNotFoundException("Booking with id: " + bookingId + " not found!");
@@ -129,29 +104,26 @@ public class PaymentService {
         }
         List<Payment> result = repo.findPaymentsByStatus(upper);
         if (result.isEmpty()) {
-            throw new ResourceNotFoundException("No payments with status: " + status);
+            throw new ResourceNotFoundException("No payments with status: " + upper);
         }
         return result;
     }
 
-    // Helper
+    // check amount 
+
     private void checkAmount(BigDecimal amount) {
         if (amount == null || amount.compareTo(BigDecimal.ZERO) <= 0) {
             throw new InvalidRequestException("Amount must be greater than 0!");
         }
     }
 
-    // The JSON body only needs "booking": { "id": 1 }; this loads the full booking
+    // find booking
     private Booking findBooking(Payment payment) {
         if (payment.getBooking() == null || payment.getBooking().getId() == null) {
-            throw new InvalidRequestException("Payment must have a booking id");
+            throw new InvalidRequestException("booking.id is required");
         }
         Long bookingId = payment.getBooking().getId();
         return bookingRepo.findById(bookingId)
-                .orElseThrow(() -> new ResourceNotFoundException("Booking not found with id: " + bookingId));
-=======
-        Payment existing = getPaymentByIdJPA(id);
-        repo.delete(existing);
->>>>>>> origin/main
+                .orElseThrow(() -> new ResourceNotFoundException("Booking with id: " + bookingId + " not found!"));
     }
 }

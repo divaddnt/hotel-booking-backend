@@ -31,12 +31,10 @@ public class RoomService {
         return repo.findAll();
     }
 
-    /// following zhara's backendshop orderservice 
     public Room getRoomByIdJPA(Long id) {
         Optional<Room> optionalRoom = repo.findById(id);
         /// search in the database for the room by its id and store it in optional room
 
-    /// if it is there, just store it and return it, if not return an error message
     if (optionalRoom.isPresent()) {
             return optionalRoom.get();
         } else {
@@ -45,11 +43,9 @@ public class RoomService {
     }
 
     public Room addRoomJPA(Room room) {
-        /// if room status return to nothing(null) we set it to available
         if (room.getStatus() == null) {
             room.setStatus("AVAILABLE");
         }
-        //// if the room's price is missing (nonexistence) or it is 0 or smaller, we straw an exception 
         if (room.getPricePerNight() == null || room.getPricePerNight().compareTo(BigDecimal.ZERO) <= 0) {
             throw new InvalidRequestException("Price per night must be greater than 0!");
         }
