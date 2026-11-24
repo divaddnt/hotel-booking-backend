@@ -4,12 +4,18 @@ DELIMITER //
 DROP PROCEDURE IF EXISTS getRemainingBalance //
 CREATE PROCEDURE getRemainingBalance(IN bookingIdIN BIGINT, OUT remainingOUT DECIMAL(10,2))
 BEGIN
-    SELECT b.total_price - COALESCE(SUM(p.amount), 0)
-    INTO remainingOUT
-    FROM booking b
-    LEFT JOIN payment p ON p.booking_id = b.id AND p.status = 'PAID'
-    WHERE b.id = bookingIdIN
-    GROUP BY b.id, b.total_price;
+    DECLARE totalPrice DECIMAL(10,2);
+    DECLARE paidAmount DECIMAL(10,2);
+
+    -- the total price of the booking
+    SELECT total_price INTO totalPrice
+    FROM booking
+    WHERE id = bookingIdIN;
+    --how much was already paid (only PAID payments count)
+    SELECT IFNULL(SUM(amount), 0) INTO paidAmount
+    FROM payment
+    WHERE booking_id = bookingIdIN AND status = 'PAID';
+    SET remainingOUT = totalPrice - paidAmount;
 END //
 
 DELIMITER ;
