@@ -1,4 +1,3 @@
--- booking_procedures.sql | owner: Yuka
 USE hotel_booking;
 DELIMITER //
 
